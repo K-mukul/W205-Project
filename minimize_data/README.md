@@ -1,5 +1,6 @@
 ## Packages needed for this application
 AWS CLI
+
 ```$pip install awscli```
 
 ## To access data from S3, you will need credentials for our S3 bucket
@@ -49,7 +50,3 @@ We loaded the data into Hive to do data transformations on the clean data set.
 
 ```$hive -f load_tweets.sql```
 
-### Transforming data
-We transformed the data within Hive, and wrote tables back to Hive. To visualize our data we ran a Hiveserver and connected to the server using Tableau.
-
-```$hive --service hiveserver2```
