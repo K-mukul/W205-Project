@@ -30,3 +30,9 @@ Note that we output all of our tweets to clean-tweets_all.log -- this file takes
 ```$python sample_tweets.py```
 
 This outputs the file clean-tweets_sample.log. Even with the sampled data, the sentiment analysis took several hours to run. To demonstrate the sentiment analysis on a very small data set, use the file small-tweet.txt.
+
+## Loading data into Hive
+
+Once the sampled data is finished with sentiment analysis, load the data in tweet-sentiment_sample.log into Hive using:
+
+```$ hive -f sentiment_hive.sql```
