@@ -24,3 +24,9 @@ Current script takes a file as a parameter and appends the sentiment score to th
 ```$python run_sentiment.py small-tweet.txt```
 
 Output JSON is tweet-sentiment_output.log.
+
+Note that we output all of our tweets to clean-tweets_all.log -- this file takes too long to process for sentiment analysis. Thus, we've sampled the tweets using the following script:
+
+```$python sample_tweets.py```
+
+This outputs the file clean-tweets_sample.log. Even with the sampled data, the sentiment analysis took several hours to run. To demonstrate the sentiment analysis on a very small data set, use the file small-tweet.txt.
