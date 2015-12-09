@@ -12,6 +12,7 @@ aws s3 cp s3://mids-205-finalproject/clean-tweets_2015-11-30.log .;
 # Concatenate data to form one file with all Black Friday tweets
 cat clean-tweets_2015* > clean-tweets_all.log;
 rm clean-tweets_2015*;
+cp clean-tweets_all.log ../sentiment_analysis;
 
 # Create folder in HDFS for Hive tables
 hdfs dfs -mkdir /user/w205/final_proj;
