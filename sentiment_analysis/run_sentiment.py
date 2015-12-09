@@ -3,7 +3,7 @@ import nltk.data
 import yaml
 import pprint
 import json
-import numpy as np
+#import numpy as np
 import sys
 
 ##This is taken directly from http://fjavieralba.com/basic-sentiment-analysis-with-python.html
@@ -180,9 +180,7 @@ with open("tweet-sentiment_output.log", 'w') as outfile:
 
 			#Places all the date, text and scores into a list for efficiency, then converts it to a numpy array for now
 			#sentiments.append([date, tweet, score])
-			
-			print "date:", date, "score:", score, "text:", tweet
-			
+						
 			#Immediately write all tweets with scores to JSON
 			data = {}
 			data['text'] = tweet
@@ -190,5 +188,8 @@ with open("tweet-sentiment_output.log", 'w') as outfile:
 			data['score'] = score
 			json.dump(data, outfile)
 			outfile.write('\n')
+
+                        print data
+
 	except:
 		print "There was an error."
