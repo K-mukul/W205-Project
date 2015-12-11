@@ -1,6 +1,6 @@
 # Black Friday Tweets Project
 
-1. Collecting data using Kafka and the Twitter stream, then store into S3
+1. Collecting data using Kafka and the Twitter stream, then store into S3 (data_gathering)
 
 2. Processing, refining, cleaning data using Python, loading data into Hive (minimize_data)
 
