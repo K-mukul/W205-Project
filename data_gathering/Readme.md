@@ -56,3 +56,7 @@ The following command was added to a nightly crontab.
 Install scripts and code to use Kafka are included here, but were not necessary
 for this data collection. Writing to files and moving them to S3 on a daily basis
 worked fine for collecting this volume of data.
+
+The above vagrant VM will have Kafka installed on it during provisioning. It is
+possible to go to /usr/local/kafka/ and step through the examples in the Kafka
+quickstart located here: http://kafka.apache.org/documentation.html#quickstart
