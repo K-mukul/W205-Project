@@ -1,0 +1,30 @@
+- hosts: all
+  remote_user: ubuntu
+  sudo: yes
+
+  vars:
+    app_name: black-friday-data-gather
+
+  tasks:
+    - name: install packages
+      action: apt pkg={{item}} state=installed
+      with_items:
+        - python-pip
+        - supervisor
+
+    - name: install various libraries with pip
+      action: pip name={{item}} state=present
+      with_items:
+        - birdy
+
+    # install kafka - not necessary for this write-to-disk example
+    - name: download kafka
+      get_url: url=http://apache.arvixe.com/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz dest=/tmp/
+    - name: unpack kafka
+      unarchive: src=/tmp/kafka_2.11-0.9.0.0.tgz dest=/usr/local/ copy=no
+    - name: set spark kafka symbolic link
+      file: state=link dest=/usr/local/kafka src=/usr/local/kafka_2.11-0.9.0.0
+
+    # get our data gathering app running
+    - name: add our application to supervisord
+      copy: src=sard-twitter-gather-supervisord.conf dest=/etc/supervisor/conf.d/ mode=0644

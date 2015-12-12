@@ -7,9 +7,10 @@ import re
 import sys
 from time import strftime
 
-keywordsfile = sys.argv[1]
-tokenfile = os.path.expanduser("~") + "/.twitterapi/berkeley.yml"
-logdir = sys.argv[2]
+keywordsfile = "/vagrant/keywords-v1.txt"
+keywordsname = "v1"
+tokenfile = "/vagrant/twitter-api-keys.yml"
+logdir = "/vagrant/data/"
 
 with open(keywordsfile) as f:
     keywords = f.read().splitlines()
@@ -19,13 +20,14 @@ print "Tracking tweets with these keywords:", keywords_string
 
 # Connect to Twitter
 tokens = yaml.safe_load(open(tokenfile))
-client = StreamClient(tokens['consumer_key'],tokens['consumer_secret'],tokens['access_token'],tokens['access_secret'])
+client = StreamClient(tokens['consumer_key'],tokens['consumer_secret'],
+    tokens['access_token'],tokens['access_secret'])
 resource = client.stream.statuses.filter.post(track=keywords_string)
 
 today = strftime("%Y-%m-%d")
-keywordsname = re.sub('\.txt','',keywordsfile)
 tweetlogfilename = logdir + 'tweets-' + keywordsname + '-' + today + '.log'
 try:
+    print "Opening ", tweetlogfilename
     tweetlog = open(tweetlogfilename, "a")
 except:
     print "Unable to open tweet log file."
@@ -36,8 +38,10 @@ for data in resource.stream():
    if today != strftime("%Y-%m-%d"):
        today = strftime("%Y-%m-%d")
        tweetlog.close()
-       tweetlogfilename = logdir + 'tweets-' + keywordsname + '-' + today + '.log'
+       tweetlogfilename = logdir + 'tweets-' + \
+            keywordsname + '-' + today + '.log'
        try:
+           print "Opening ", tweetlogfilename
            tweetlog = open(tweetlogfilename, "a")
        except:
            print "Unable to open tweet log file."
@@ -45,4 +49,4 @@ for data in resource.stream():
 
    tweetlog.write(json.dumps(data) + '\n')
    if 'text' in data:
-       print data['text']
+       print data['text'].encode('utf-8')

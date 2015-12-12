@@ -3,7 +3,7 @@ AWS CLI
 
 ```$pip install awscli```
 
-## To access data from S3, you will need credentials for our S3 bucket
+## Note: To access data from S3, you will need credentials for our S3 bucket. Sent separately.
 ------------------------------
 # Cleaning and filtering the original data set
 After collecting our data set, we need to clean and minimize it, since we collected about 10GB of data per day.  To minimize and clean the data, we chose to only include tweets that had "black friday" or "blackfriday" (case insensitive) in the tweet. We did this because we were interested in how Twitter users were reacting to Black Friday.
@@ -46,7 +46,45 @@ To retrieve the cleaned data directly from S3, run the following script with our
 ```$bash retrieve_data.sh```
 
 ### Loading data into Hive
-We loaded the data into Hive to do data transformations on the clean data set. 
+We loaded the data into Hive to do data transformations on the clean data set.
 
 ```$hive -f load_tweets.sql```
 
+## Running a parallelized version of the cleaner filter
+
+An example of a parallized version of the cleaner is include showing how to clean
+the tweets faster using GNU Parallel.
+
+To run the example, ensure your local machine has vagrant installed (vagrantup.com)
+then, while in this directory start the Vagrant vm, log in, run the example script.
+
+    vagrant up
+    vagrant ssh
+    cd /Vagrant
+    ./parallel-example.sh 2
+
+The argument to ./paralell-example.sh is the number of processes to run. This command
+will run on a few megabytes of sample data stored in /vagrant/sample-data. The vagrant vm
+is provisioned with only 2 cores (as seen in the Vagrantfile). Here are the results of
+running the example with different numbers of cores.
+
+    vagrant@w205-final-minimize-data-example:/vagrant$ time ./parallel-example.sh 1 > /dev/null
+
+    real	0m1.479s
+    user	0m0.880s
+    sys	0m0.332s
+    vagrant@w205-final-minimize-data-example:/vagrant$ time ./parallel-example.sh 2 > /dev/null
+
+    real	0m0.966s
+    user	0m1.178s
+    sys	0m0.291s
+    vagrant@w205-final-minimize-data-example:/vagrant$ time ./parallel-example.sh 3 > /dev/null
+
+    real	0m0.938s
+    user	0m1.075s
+    sys	0m0.419s
+    vagrant@w205-final-minimize-data-example:/vagrant$ time ./parallel-example.sh 4 > /dev/null
+
+    real	0m0.885s
+    user	0m1.022s
+    sys	0m0.415s
