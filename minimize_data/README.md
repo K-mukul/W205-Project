@@ -66,7 +66,9 @@ then, while in this directory start the Vagrant vm, log in, run the example scri
 The argument to ./paralell-example.sh is the number of processes to run. This command
 will run on a few megabytes of sample data stored in /vagrant/sample-data. The vagrant vm
 is provisioned with only 2 cores (as seen in the Vagrantfile). Here are the results of
-running the example with different numbers of cores.
+running the example with different numbers of processes. Results will vary depending on
+the machine you run this on but as shown below more processes do decrease the time to
+process even this small sample data set.
 
     vagrant@w205-final-minimize-data-example:/vagrant$ time ./parallel-example.sh 1 > /dev/null
 
