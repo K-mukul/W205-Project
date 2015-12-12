@@ -60,3 +60,7 @@ worked fine for collecting this volume of data.
 The above vagrant VM will have Kafka installed on it during provisioning. It is
 possible to go to /usr/local/kafka/ and step through the examples in the Kafka
 quickstart located here: http://kafka.apache.org/documentation.html#quickstart
+
+Our python code for writing twitter to Kafka topics is located in the file
+twitter-stream-to-kafka.py. This can be run and managed in supervisord just like
+the above file-writing example.
