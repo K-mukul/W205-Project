@@ -25,7 +25,11 @@ Vagrant will:
 
 Once it's up and running you should see data flowing into the data directory.
 
-## Manually tarting the data collect
+In the case of a reboot, loss of connectivity, or other minor error, supervisord
+will restart the collector process. In this manner we were able to collect data
+over a long period of time without gaps in our coverage due to minor errors.
+
+## The collector
 
 If you want to run the data collector directly, it is here. Some configuration
 variables at the top of the file will need to be changed if running it outside
