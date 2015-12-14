@@ -48,7 +48,7 @@ To retrieve the cleaned data directly from S3, run the following script with our
 ### Loading data into Hive
 We loaded the data into Hive to do data transformations on the clean data set.
 
-```$hive -f load_tweets.sql```
+```$hive -f tweets_hive.sql```
 
 ## Running a parallelized version of the cleaner filter
 
