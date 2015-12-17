@@ -7,7 +7,7 @@ CREATE EXTERNAL TABLE raw_tweets
 STORED AS TEXTFILE
 LOCATION '/user/w205/final_proj/raw_tweets';
 
-LOAD DATA LOCAL INPATH 'clean-tweets_all.log'
+LOAD DATA LOCAL INPATH 'clean-tweets_all_2015-mm-dd.log'
 OVERWRITE INTO TABLE raw_tweets;
 
 CREATE TABLE tweets AS

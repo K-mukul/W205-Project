@@ -7,7 +7,7 @@ CREATE EXTERNAL TABLE raw_tweets_sentiment
 STORED AS TEXTFILE
 LOCATION '/user/w205/final_proj/raw_tweets_sentiment';
 
-LOAD DATA LOCAL INPATH 'tweet-sentiment_sample.log'
+LOAD DATA LOCAL INPATH 'tweet-sentiment_output.log'
 OVERWRITE INTO TABLE raw_tweets_sentiment;
 
 CREATE TABLE tweets_sentiment AS
