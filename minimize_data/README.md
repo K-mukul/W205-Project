@@ -90,3 +90,13 @@ process even this small sample data set.
     real	0m0.885s
     user	0m1.022s
     sys	0m0.415s
+
+## Batch Updates
+
+To do a batch update for one days' data that is stored in S3, run:
+
+```$bash retrieve_update.sh 2015-mm-dd```
+
+The last parameter is the date of the data you wish to update the data set with.
+
+Following the update retrieval, the data can be loaded and transformed in Hive as in previous steps. Currently, the tweets_hive.sql script is hard coded to use data from the file "clean-tweets_all_2015-mm-dd.log".
