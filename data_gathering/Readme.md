@@ -36,6 +36,8 @@ variables at the top of the file will need to be changed if running it outside
 of the vagrant vm.
 
     vagrant ssh
+    mkdir /vagrant/data/
+    chmod a+rw /vagrant/data/
     python /vagrant/twitter-stream-to-file.py
 
 ## Moving collected data to S3
